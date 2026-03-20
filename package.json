@@ -1,6 +1,6 @@
 {
   "name": "@versu/plugin-maven",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Versu Maven Plugin",
   "type": "module",
   "main": "dist/index.js",
