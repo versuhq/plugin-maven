@@ -1,7 +1,7 @@
 {
   "name": "@versu/plugin-maven",
-  "version": "0.1.0",
-  "description": "VERSU Maven Plugin",
+  "version": "0.1.1",
+  "description": "Versu Maven Plugin",
   "type": "module",
   "main": "dist/index.js",
   "exports": {
@@ -34,8 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/versuhq/plugin-maven.git",
-    "directory": "packages/plugin-maven"
+    "url": "git+https://github.com/versuhq/plugin-maven.git"
   },
   "bugs": {
     "url": "https://github.com/versuhq/plugin-maven/issues"
