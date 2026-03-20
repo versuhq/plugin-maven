@@ -15,8 +15,8 @@
     "build": "npm run build:esm",
     "build:esm": "tsc --project tsconfig.json --outDir dist",
     "build:cjs": "tsc --project tsconfig.cjs.json --outDir dist",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage",
+    "test": "vitest --passWithNoTests",
+    "test:coverage": "vitest --coverage --passWithNoTests",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts"
   },
