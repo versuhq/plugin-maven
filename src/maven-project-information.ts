@@ -19,6 +19,7 @@ type PomDependency = { groupId?: string; artifactId?: string };
 type PomParent = { groupId?: string; artifactId?: string; version?: string };
 
 type ParsedPom = {
+  name?: string;
   groupId?: string;
   artifactId?: string;
   version?: string;
@@ -73,6 +74,7 @@ async function parsePom(pomPath: string): Promise<ParsedPom> {
   const project = doc.project ?? doc;
 
   return {
+    name: normalizeText(project.name),
     groupId: normalizeText(project.groupId),
     artifactId: normalizeText(project.artifactId),
     version: normalizeText(project.version),
@@ -121,7 +123,7 @@ export async function getRawProjectInformation(
     const declaredVersion = parsed.version !== undefined;
     const version = parsed.version ?? parsed.parent?.version;
 
-    const name = `${groupId}:${artifactId}`;
+    const name = parsed.name ?? artifactId;
 
     const module: MavenModule = {
       name,
