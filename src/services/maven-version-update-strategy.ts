@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
-import { ModuleRegistry, VersionUpdateStrategy } from "@versu/core";
+import type { ModuleRegistry, VersionUpdateStrategy } from "@versu/core";
 import { MAVEN_POM_FILE } from "../constants.js";
 import { DOMParser, XMLSerializer } from "@xmldom/xmldom";
 import * as xpath from "xpath";

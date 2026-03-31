@@ -2,14 +2,14 @@ import { join, sep } from "path";
 import fs from "fs/promises";
 import { XMLParser } from "fast-xml-parser";
 import {
-  BaseModule,
+  type BaseModule,
   createInitialVersion,
   exists,
   logger,
-  Module,
+  type Module,
   parseSemVer,
-  ProjectInformation,
-  RawProjectInformation,
+  type ProjectInformation,
+  type RawProjectInformation,
 } from "@versu/core";
 import { MAVEN_POM_FILE } from "./constants.js";
 

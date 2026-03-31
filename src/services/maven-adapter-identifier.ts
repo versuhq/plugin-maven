@@ -1,6 +1,6 @@
 import * as fs from "fs/promises";
 import { MAVEN_POM_FILE, MAVEN_ID } from "../constants.js";
-import { AdapterIdentifier, exists, logger } from "@versu/core";
+import { type AdapterIdentifier, exists, logger } from "@versu/core";
 
 /**
  * Adapter identifier for Maven-based projects.

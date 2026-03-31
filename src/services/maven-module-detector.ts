@@ -1,4 +1,4 @@
-import { ModuleDetector, type ProjectInformation } from "@versu/core";
+import type { ModuleDetector, ProjectInformation } from "@versu/core";
 import {
   getRawProjectInformation,
   getProjectInformation,
