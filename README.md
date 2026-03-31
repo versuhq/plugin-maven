@@ -24,6 +24,7 @@ const runner = new VersuRunner({
   repoRoot: '/path/to/repository',
   plugins: [mavenPlugin],
   adapter: 'maven', // Optional - auto-detected
+  // ...other options as needed
 });
 
 const result = await runner.run();
