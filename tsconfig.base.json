@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noUncheckedIndexedAccess": true,
     "isolatedModules": true,
-    "lib": ["ES2022"],
+    "lib": ["ES2025"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "newLine": "lf",
@@ -19,6 +19,6 @@
     "resolveJsonModule": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2022"
+    "target": "ES2025"
   }
 }

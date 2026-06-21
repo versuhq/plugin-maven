@@ -2,8 +2,9 @@ import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import type { ModuleRegistry, VersionUpdateStrategy } from "@versu/core";
 import { MAVEN_POM_FILE } from "../constants.js";
-import { DOMParser, XMLSerializer } from "@xmldom/xmldom";
-import * as xpath from "xpath";
+import { DOMParser, XMLSerializer, type Element } from "@xmldom/xmldom";
+
+const MAVEN_NS = "http://maven.apache.org/POM/4.0.0";
 
 type ParentInfo = { groupId?: string; artifactId?: string; version?: string };
 
@@ -64,36 +65,42 @@ export class MavenVersionUpdateStrategy implements VersionUpdateStrategy {
   private async updatePom(pomPath: string, updates: PomUpdate): Promise<void> {
     const xml = await readFile(pomPath, "utf8");
     const doc = new DOMParser().parseFromString(xml, "text/xml");
+    const project = doc.documentElement;
+    if (!project) return;
 
-    // Maven POMs use a namespace. We define it so XPath can find the tags.
-    const select = xpath.useNamespaces({
-      m: "http://maven.apache.org/POM/4.0.0",
-    });
-
-    // This XPath specifically targets the project version, NOT dependency versions
-    const versionNodeResult = select("/m:project/m:version/text()", doc);
-    const versionNode = Array.isArray(versionNodeResult)
-      ? (versionNodeResult[0] as Node)
-      : null;
-
-    if (versionNode && updates.projectVersion) {
-      versionNode.textContent = updates.projectVersion;
+    // This specifically targets the project version, NOT dependency versions
+    if (updates.projectVersion) {
+      const versionEl = this.getDirectChildNS(project, "version");
+      if (versionEl) {
+        versionEl.textContent = updates.projectVersion;
+      }
     }
 
-    const parentVersionNodeResult = select(
-      "/m:project/m:parent/m:version/text()",
-      doc,
-    );
-    const parentVersionNode = Array.isArray(parentVersionNodeResult)
-      ? (parentVersionNodeResult[0] as Node)
-      : null;
-
-    if (parentVersionNode && updates.parentVersion) {
-      parentVersionNode.textContent = updates.parentVersion;
+    if (updates.parentVersion) {
+      const parentEl = this.getDirectChildNS(project, "parent");
+      const versionEl = parentEl
+        ? this.getDirectChildNS(parentEl, "version")
+        : null;
+      if (versionEl) {
+        versionEl.textContent = updates.parentVersion;
+      }
     }
 
     // Serialize back to string
     const updatedXml = new XMLSerializer().serializeToString(doc);
     await writeFile(pomPath, updatedXml, "utf8");
+  }
+
+  private getDirectChildNS(
+    parent: Element,
+    localName: string,
+  ): Element | null {
+    const children = parent.getElementsByTagNameNS(MAVEN_NS, localName);
+    for (let i = 0; i < children.length; i++) {
+      if (children[i]!.parentNode === parent) {
+        return children[i]!;
+      }
+    }
+    return null;
   }
 }
