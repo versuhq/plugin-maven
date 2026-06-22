@@ -3,12 +3,8 @@ import fs from "fs/promises";
 import { XMLParser } from "fast-xml-parser";
 import {
   type BaseModule,
-  createInitialVersion,
   exists,
   logger,
-  type Module,
-  parseSemVer,
-  type ProjectInformation,
   type RawProjectInformation,
 } from "@versu/core";
 import { MAVEN_POM_FILE } from "./constants.js";
@@ -215,52 +211,4 @@ export async function getRawProjectInformation(
   });
 
   return result;
-}
-
-export function getProjectInformation(
-  projectInformation: RawProjectInformation,
-): ProjectInformation {
-  const moduleIds = Object.keys(projectInformation);
-  const modules = new Map<string, Module>();
-
-  let rootModule: string | undefined;
-
-  for (const [moduleId, rawModule] of Object.entries(projectInformation)) {
-    if (rawModule.type === "root") {
-      rootModule = moduleId;
-    }
-
-    const module: Module = {
-      id: moduleId,
-      name: rawModule.name,
-      path: rawModule.path,
-      type: rawModule.type,
-      affectedModules: new Set(rawModule.affectedModules),
-      version:
-        rawModule.version === undefined
-          ? createInitialVersion()
-          : parseSemVer(rawModule.version),
-      declaredVersion: rawModule.declaredVersion,
-    };
-
-    for (const [key, value] of Object.entries(rawModule)) {
-      if (!(key in module)) {
-        module[key] = value;
-      }
-    }
-
-    modules.set(moduleId, module);
-  }
-
-  if (!rootModule) {
-    throw new Error(
-      "No root module found. Maven project must include a root pom.xml.",
-    );
-  }
-
-  return {
-    moduleIds,
-    modules,
-    rootModule,
-  };
 }

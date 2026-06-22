@@ -14,13 +14,13 @@ export class MavenModuleSystemFactory implements ModuleSystemFactory {
   /** Absolute path to the repository root directory. */
   constructor(private readonly repoRoot: string) {}
 
-  createDetector(_outputFile: string): ModuleDetector {
+  async createDetector(_outputFile: string): Promise<ModuleDetector> {
     return new MavenModuleDetector(this.repoRoot);
   }
 
-  createVersionUpdateStrategy(
+  async createVersionUpdateStrategy(
     moduleRegistry: ModuleRegistry,
-  ): VersionUpdateStrategy {
+  ): Promise<VersionUpdateStrategy> {
     return new MavenVersionUpdateStrategy(this.repoRoot, moduleRegistry);
   }
 }

@@ -9,12 +9,12 @@ const mavenPlugin: PluginContract = {
   description:
     "Adapter plugin for Maven build system. Provides support for detecting and updating versions in Maven projects.",
   version: VERSION,
-  author: AUTHORS,
+  authors: AUTHORS,
   adapters: [
     {
       id: "maven",
-      adapterIdentifier: () => new MavenAdapterIdentifier(),
-      moduleSystemFactory: (repoRoot: string) =>
+      adapterIdentifier: async (_configDirectory: string) => new MavenAdapterIdentifier(),
+      moduleSystemFactory: async (repoRoot: string, _configDirectory: string) =>
         new MavenModuleSystemFactory(repoRoot),
     },
   ],

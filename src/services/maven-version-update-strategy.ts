@@ -91,10 +91,7 @@ export class MavenVersionUpdateStrategy implements VersionUpdateStrategy {
     await writeFile(pomPath, updatedXml, "utf8");
   }
 
-  private getDirectChildNS(
-    parent: Element,
-    localName: string,
-  ): Element | null {
+  private getDirectChildNS(parent: Element, localName: string): Element | null {
     const children = parent.getElementsByTagNameNS(MAVEN_NS, localName);
     for (let i = 0; i < children.length; i++) {
       if (children[i]!.parentNode === parent) {

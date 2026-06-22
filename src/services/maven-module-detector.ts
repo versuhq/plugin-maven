@@ -1,8 +1,9 @@
-import type { ModuleDetector, ProjectInformation } from "@versu/core";
 import {
-  getRawProjectInformation,
-  getProjectInformation,
-} from "../maven-project-information.js";
+  getProjectInformationFromRawData,
+  type ModuleDetector,
+  type ProjectInformation,
+} from "@versu/core";
+import { getRawProjectInformation } from "../maven-project-information.js";
 
 /**
  * Module detector for Maven-based projects.
@@ -14,6 +15,6 @@ export class MavenModuleDetector implements ModuleDetector {
 
   async detect(): Promise<ProjectInformation> {
     const rawProjectInformation = await getRawProjectInformation(this.repoRoot);
-    return getProjectInformation(rawProjectInformation);
+    return getProjectInformationFromRawData(rawProjectInformation);
   }
 }
