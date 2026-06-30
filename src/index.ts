@@ -13,7 +13,12 @@ const mavenPlugin: PluginContract = {
   adapters: [
     {
       id: "maven",
-      adapterIdentifier: async (_configDirectory: string) => new MavenAdapterIdentifier(),
+      adapterIdentifierFactory: async (_configDirectory: string) => {
+        return {
+          id: "maven",
+          create: async () => new MavenAdapterIdentifier()
+        };
+      },
       moduleSystemFactory: async (repoRoot: string, _configDirectory: string) =>
         new MavenModuleSystemFactory(repoRoot),
     },

@@ -1,6 +1,6 @@
 {
   "name": "@versu/plugin-maven",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Versu Maven Plugin",
   "type": "module",
   "main": "dist/index.js",
@@ -46,13 +46,13 @@
     "fast-xml-parser": "^5.9.3"
   },
   "peerDependencies": {
-    "@versu/core": "^3.0.3"
+    "@versu/core": "^3.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.13.2",
     "@types/semver": "^7.7.1",
-    "@versu/core": "^3.0.3",
+    "@versu/core": "^3.1.1",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^10.5.0",
     "prettier": "^3.8.4",
