@@ -16,13 +16,13 @@ npm install @versu/core @versu/plugin-maven
 
 ## Usage
 
+Once installed, the plugin is discovered automatically from `node_modules` (or list it explicitly in the `plugins` array of your `versu.config.js`):
+
 ```typescript
 import { VersuRunner } from '@versu/core';
-import mavenPlugin from '@versu/plugin-maven';
 
 const runner = new VersuRunner({
   repoRoot: '/path/to/repository',
-  plugins: [mavenPlugin],
   adapter: 'maven', // Optional - auto-detected
   // ...other options as needed
 });
