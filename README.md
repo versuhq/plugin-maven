@@ -40,3 +40,7 @@ The plugin automatically activates when `pom.xml` is present in the repository r
 - The plugin updates:
   - `<project><version>` when the module declares its own version.
   - `<project><parent><version>` when the parent module version changes.
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
