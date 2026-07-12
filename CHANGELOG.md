@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- Next Version Placeholder -->
 
+## [2.0.4](https://github.com/versuhq/plugin-maven/compare/v2.0.3...v2.0.4) - 2026-07-12
+
+### 📝 Documentation
+
+- Add license to readme ([25aa0dd](https://github.com/versuhq/plugin-maven/commit/25aa0ddb7cd7cf5dac10af4dd82661d60cbdceac))
+
 ## [2.0.3](https://github.com/versuhq/plugin-maven/compare/v2.0.2...v2.0.3) - 2026-07-12
 
 ### 📝 Documentation
