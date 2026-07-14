@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- Next Version Placeholder -->
 
+## [2.0.5](https://github.com/versuhq/plugin-maven/compare/v2.0.4...v2.0.5) - 2026-07-14
+
+### 🔁 CI
+
+- Use static version file generated on prebuild ([1526078](https://github.com/versuhq/plugin-maven/commit/1526078cf26c277232857b08daaf101900132dae))
+
 ## [2.0.4](https://github.com/versuhq/plugin-maven/compare/v2.0.3...v2.0.4) - 2026-07-12
 
 ### 📝 Documentation
